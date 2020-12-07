@@ -26,4 +26,4 @@ Dhruval Gandhi, Max Base (You can be here if you like and wanna to help: [CLICK 
 ## License
 
 MIT License Copyright (c) 2020-present, Max Base
-Donya OS community
+On System community
