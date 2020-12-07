@@ -1,4 +1,4 @@
-# On
+# On System
 
 ## On Free E-Learning and conference system
 
@@ -12,7 +12,7 @@ WebRTC/HTML5-based open-source application that enables users, teachers to engag
 
 ### Name strategy
 
-On (= Online) 
+On System (= Online System) 
 
 This is the main issue in live communication. That we can stay online and be online. Or even watch an audio or movie online.
 
