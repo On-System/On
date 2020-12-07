@@ -4,9 +4,9 @@
 
 WebRTC/HTML5-based open-source application that enables users, teachers to engage and collaborate with their students, members online through chat, audio, video.
 
-![Free E-Learning and conference system](https://user-images.githubusercontent.com/2658040/101387697-1024c700-38d4-11eb-885f-f8d7b4f467e9.png)
-
 > This conference system is not yet ready, we need the help of others.  **Join team by send and introduce yourself in a message at [this issue](https://github.com/On-System/On/issues/2)**
+
+![Free E-Learning and conference system](https://user-images.githubusercontent.com/2658040/101387697-1024c700-38d4-11eb-885f-f8d7b4f467e9.png)
 
 #### [Talk about Development at here](https://github.com/On-System/On/issues/1)
 
