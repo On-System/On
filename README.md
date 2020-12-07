@@ -19,6 +19,14 @@ This is the main issue in live communication. That we can stay online and be onl
 Maybe we should think more about the name.
 Because this name is not unique and will not be found in Google results.
 
+## Contribution
+
+Please make sure to read the [Contributing Guide](CONTRIBUTING.md) before making a pull request. If you have a On System-related project/feature/tool, add it with a pull request to this curated list!
+
+Thank you to all the people who already contributed to On System!
+
+**Join team by send a message at [this issue](https://github.com/On-System/On/issues/2)**
+
 ## Team members
 
 Dhruval Gandhi, Max Base (You can be here if you like and wanna to help: [CLICK HERE](https://github.com/On-System/On/issues/2))
