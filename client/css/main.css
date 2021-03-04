@@ -1,0 +1,534 @@
+/* ++++++++++++ Add font in this page +++++++++++ */
+@font-face{
+    font-family: 'segoe ui';
+    src: url('../fonts/SegoeUI.otf') format('otf'),
+        url('../fonts/SegoeUI.svg') format('svg'),
+        url('../fonts/SegoeUI.ttf') format('truetype'),
+        url('../fonts/SegoeUI.woff') format('woff'),
+        url('../fonts/SegoeUI.woff2') format('woff2');
+}
+/* +++++++++++++ GLOBAL STYLE FOR THIS PAGE +++++++++++*/
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+*::-webkit-scrollbar{
+    display: none;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    padding: 0;
+    margin: 1em;
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: #F3F4F8;
+    font-family: 'segoe ui';
+}
+ul{
+    list-style: none;
+}
+button{
+    border: none;
+    cursor: pointer;
+}
+button:focus,
+input:focus{
+    outline: none;
+}
+.button-white{
+    background-color: white;
+    border-radius: 10px;
+    margin: 0.5em;
+}
+.button-white svg{
+    width: 14px;
+    margin: 0.4em 0.7em;
+}
+.button-dark-green{
+    background-color: #1B4A42;
+    color: white;
+    padding: 0.425em 2em;
+    border-radius: 10px;
+    margin: 0.5em;
+}
+.button-icon{
+    background-color: transparent;
+}
+.button-left{
+    text-align: right;
+}
+/* +++++++++++++ MAIN PAGE STYLES  ++++++++++ */
+.main-page{
+    display: flex;
+}
+
+/* ++++++++++++ LEFT SIDE STYLES PAGE +++++++++++*/
+.main-page .left-section{
+    width: 70%;
+}
+/* +++++++++++++ HEADER LEFT SIDE STYLES ++++++++++++ */
+.header-webinar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-webinar .webinar-title{
+    margin: 0;
+    font-weight: 200;
+    font-size: 1.5em;
+}
+.header-webinar .header-tollbar{
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+}
+.header-tollbar .open-more{
+    position: relative;
+    display: flex;
+}
+.header-tollbar .open-more .open-more-option{
+    position: absolute;
+    top: 50px;
+    left: -25px;
+    width: 160px;
+    z-index: 1000;
+    background-color: white;
+    border-radius: 10px;
+    padding: 0.5em 0;
+    opacity: 0;
+    display: none;
+    transform: all 0.5s;
+}
+.header-tollbar .open-more .open-more-option.open{
+    opacity: 1;
+    display: block;
+}
+.header-tollbar .open-more .open-more-option li{
+    padding: 0.55em 1.5em;
+    display: block;
+}
+.header-tollbar .open-more .open-more-option li:hover{
+    background-color: #eeeeee;
+    cursor: pointer;
+}
+.header-tollbar .open-more .open-more-option::before{
+    content: ' ';
+    position: absolute;
+    top: -7px;
+    left: 50px;
+    width: 13px;
+    height: 13px;
+    background-color: white;
+    transform: rotate(45deg);
+}
+
+/*----------- MAIN WEBINAR STYLES ---------*/
+.main-webinar{
+    display: flex;
+    height: 83vh;
+    margin: 1em; 
+    position: relative;
+}
+.main-webinar .main-webcam__video{
+    object-fit: cover;
+    width: 100%;
+    border-radius: 10px;
+}
+/*----- main webinar tools section styles---*/
+.main-webinar-tools{
+    top: 0;
+    width: 100%;
+    height: 83vh;
+}
+.main-webinar-tools .webinar-head{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0.7em 1em;
+}
+.webinar-head .recording-webinar__block{
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6em 0.9em;
+}
+.webinar-head .recording-webinar__block svg{
+    width: 12px;
+}
+.webinar-head .recording-webinar__block p{
+    font-size: 0.85em;
+    margin: 0;
+    padding: 0 0.5em;
+}
+
+.send-emoji{
+    position: relative;
+}
+.send-emoji .send-emoji__button {
+    border-radius: 50%;
+    padding: 0.3em 0.1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.send-emoji .send-emoji__button svg{
+    width: 19px;
+}
+.send-emoji .send-emoji-items{
+    position: absolute;
+    left: 0;
+    background-color: white;
+    border-radius: 15px;
+    display: none;
+    opacity: 0;
+    justify-content: space-between;
+    padding: 0.6em 1em;
+    margin: 0.5em 1em 0 0;
+}
+.send-emoji .send-emoji-items.open{
+    display: flex;
+    opacity: 1;
+    transition: all 0.5s;
+}
+.send-emoji .send-emoji-items::before{
+    content: ' ';
+    position: absolute;
+    top: -6px;
+    width: 15px;
+    height: 15px;
+    background: white;
+    transform: rotate(45deg);
+}
+
+.active-mic__block{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.active-mic__block .active-mic-on-item,
+.active-mic__block .active-mic-off-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2em 0.8em;
+    margin-left: 0.5em;
+    border-radius: 10em;
+}
+.active-mic__block .active-mic-on-item{
+    background-color: #C6E4DA;
+}
+.active-mic__block .active-mic-off-item{
+    background-color: #5A7B76;
+    color: white;
+}
+.active-mic__block .active-mic-on-item svg,
+.active-mic__block .active-mic-off-item svg{
+    width: 10px;
+}
+.active-mic__title{
+    margin: 0;
+    padding: 0 0.2em;
+    font-size: 0.7em;
+}
+
+.show-other-webcam {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+}
+.show-other-webcam .other-webcam-item{
+    width: 180px;
+    display: flex;
+    position: relative;
+    cursor: pointer;
+    margin: 0.5em 1em;
+}
+.show-other-webcam .other-webcam-item video{
+    object-fit: cover;
+    width: 100%;
+}
+.show-other-webcam .other-webcam-item p{
+    position: absolute;
+    color: white;
+    top: -13px;
+    left: 0;
+    background-color: rgba(0,0,0,0.4);
+    font-size: 0.8em;
+    padding: 0.2em 1em;
+}
+
+.webinar-bottom .webinar-buttom-tools{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    margin: 1em;
+}
+.webinar-bottom .webinar-buttom-tools button{
+    border-radius: 50%;
+    padding: 0.1em 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.webinar-buttom-tools .add-object-webinar{
+    position: relative;
+    display: flex;
+}
+.webinar-buttom-tools .add-object-webinar .add-object-option{
+    position: absolute;
+    width: 185px;
+    background-color: white;
+    bottom: 70px;
+    border-radius: 10px;
+    padding: 0.5em 0;
+    margin: 0;
+    display: none;
+    opacity: 0;
+}
+.webinar-buttom-tools .add-object-webinar .add-object-option.open{
+    display: block;
+    opacity: 1;
+    transition: all 0.5s;
+}
+.webinar-buttom-tools .add-object-webinar .add-object-option::after{
+    content: ' ';
+    position: absolute;
+    bottom: -5px;
+    left: 20px;
+    width: 13px;
+    height: 13px;
+    background-color: white;
+    transform: rotate(45deg);
+}
+.webinar-buttom-tools .add-object-webinar .add-object-option li{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 0.8em;
+}
+.webinar-buttom-tools .add-object-webinar .add-object-option li:hover{
+    cursor: pointer;
+    background-color: #eeeeee;
+}
+.webinar-buttom-tools .add-object-webinar .add-object-option .add-object-option__title{
+    font-size: 0.9em;
+    padding-left: 0.6em;
+    margin: 0.6em 0;
+}
+
+/* ++++++++++++ RIGHT SIDE SECTION STILES +++++++++ */
+.main-page .right-section{
+    width: 30%; 
+    height: 95vh;
+    overflow: hidden;
+    position: relative;
+}
+.main-page .right-section .group-section,
+.main-page .right-section .user-section{
+    background-color: white;
+    border-radius: 10px;
+    padding: 0.8em 1.5em;
+    width: 90%;
+    position: absolute;
+}
+
+/* ++++++++++ CHAT SECTON STYLES +++++++++++++++ */
+.group-section .button-icon svg{
+    width: 14px;
+}
+
+/*------ poll section styles -----*/
+.poll-section{
+    background-color: #1B4A42;
+    padding: 0.5em;
+    margin: 1em 0;
+    border-radius: 10px;
+    color: #eeeeee;
+}
+.poll-section .poll-body{
+    padding: 0 1em 1em;
+}
+.poll-section .button-icon svg{
+    width: 10px;
+}
+.poll-section .poll-title{
+    font-weight: 300;
+    font-size: 1.12em;
+    margin: 0.5em 0;
+}
+.poll-section .poll-options .poll-option__item-text{
+    display: flex;
+    justify-content: space-between;
+}
+.poll-section .poll-options .poll-option__item-text p{
+    margin: 1em 0 0.5em;
+    font-size: 0.8em;
+}
+.poll-section .poll-options .poll-option__item-progress-bar{
+    background-color: #5A7B76;
+    width: 100%;
+    height: 5px;
+    position: relative;
+    border-radius: 10px;
+}
+.poll-section .poll-options .poll-option__item-progress-bar span{
+    display: block;
+    background-color: white;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+/*------------- chat section styles ---------------- */
+.chat-section{
+    padding: 0 0.5em;
+    height: 11em;
+    overflow-y: scroll;
+}
+.chat-section .message-left{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+.message-left .avatar{
+    width: 40px;
+    height: 40px;
+}
+.message-left .avatar img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.message-left .message{
+    background-color: #F3F4F8;
+    border-radius: 10px;
+    width: auto;
+    padding: 0.5em;
+    margin: 0.2em 0.5em;
+}
+.message-left .message p{
+    margin: 0;
+}
+.message-left .message-username{
+    color: #AAAAAA;
+    font-size: 0.8em;
+    padding-bottom: 0.5em;
+}
+.message-left .message-text{
+    font-size: 0.9em;
+}
+
+.message-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.message-right .message{
+    width: auto;
+    background-color: #C6E4DA;
+    padding: 0.5em;
+    border-radius: 10px;
+}
+.message-right .message-text{
+    margin: 0;
+}
+
+/* ---------- send message form style --------*/
+.send-message form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F3F4F8;
+    border-radius: 20px;
+    padding: 0.4em 0.75em;
+}
+.send-message form input{
+    background-color: transparent;
+    border: none;
+    width: 100%;
+}
+.send-message form button{
+    background-color: transparent;
+}
+.send-message form button svg{
+    width: 14px;
+}
+
+/* +++++++++++++ USER SECTION STYLES +++++++++ */
+.user-section{
+    transform: translateX(450px);
+    height: 95vh;
+}
+.user-section.open{
+    transform: translateX(0);
+}
+.user-section .user-section__head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.user-section .user-section__head svg{
+    width: 18px;
+}
+.user-section .user-section__head h4{
+    margin: 0.5em;
+    font-size: 1.5em;
+    font-weight: 200;
+}
+
+.user-list{
+    padding: 0.5em 0;
+}
+.user-list .user-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.user-list .user-item .profile{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.user-list .user-item .avatar{
+    width: 50px;
+    height: 50px;
+    margin: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    border-radius: 50%;
+}
+.user-list .user-item .avatar img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.user-list .user-item .profile svg {
+    margin: 0;
+    width: 15px;
+}
+.user-list .user-item .username{
+    padding: 0.5em;
+    margin: 0;
+    font-size: 1em;
+    font-weight: 200;
+}
+.user-list .user-item .button-icon svg{
+    width: 4px;
+}
