@@ -21,10 +21,9 @@ html{
 }
 body{
     padding: 0;
-    margin: 1em;
-    width: 100%;
+    margin: 0;
     height: 100vh;
-    overflow-x: hidden;
+    overflow: hidden;
     background-color: #F3F4F8;
     font-family: 'segoe ui';
 }
@@ -64,17 +63,23 @@ input:focus{
 /* +++++++++++++ MAIN PAGE STYLES  ++++++++++ */
 .main-page{
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 /* ++++++++++++ LEFT SIDE STYLES PAGE +++++++++++*/
 .main-page .left-section{
+    /* width: calc(70% - 30px); */
     width: 70%;
+    padding: 15px 0;
+    height: 100vh;
 }
 /* +++++++++++++ HEADER LEFT SIDE STYLES ++++++++++++ */
 .header-webinar{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 15px;
 }
 .header-webinar .webinar-title{
     margin: 0;
@@ -328,23 +333,22 @@ input:focus{
     margin: 0.6em 0;
 }
 
-/* ++++++++++++ RIGHT SIDE SECTION STILES +++++++++ */
+/* ++++++++++++ RIGHT SIDE SECTION STILES ++++++9+++++++++++++++++++++ */
 .main-page .right-section{
-    width: 30%; 
-    height: 95vh;
-    overflow: hidden;
+    width: calc(30% - 30px);
+    padding: 15px 0;
     position: relative;
+    height: 100vh;
 }
-.main-page .right-section .group-section,
-.main-page .right-section .user-section{
+/* ++++++++++ CHAT SECTON STYLES +++++++++++++++ */
+.group-section{
     background-color: white;
     border-radius: 10px;
-    padding: 0.8em 1.5em;
-    width: 90%;
-    position: absolute;
+    padding: 0.8em 1.2em;
+    width: 100%;
+    height: 100%;
 }
 
-/* ++++++++++ CHAT SECTON STYLES +++++++++++++++ */
 .group-section .button-icon svg{
     width: 14px;
 }
@@ -394,9 +398,10 @@ input:focus{
 
 /*------------- chat section styles ---------------- */
 .chat-section{
-    padding: 0 0.5em;
-    height: 11em;
+    padding: 0 0.5em 0.5em;
     overflow-y: scroll;
+    /* height: calc(100vh - 27.4em); */
+    height: calc(100vh - 8em);
 }
 .chat-section .message-left{
     display: flex;
@@ -442,13 +447,22 @@ input:focus{
     background-color: #C6E4DA;
     padding: 0.5em;
     border-radius: 10px;
+    margin: 0.2em 0.5em;
 }
 .message-right .message-text{
     margin: 0;
 }
 
 /* ---------- send message form style --------*/
-.send-message form{
+.send-message{
+    background-color: white;
+    padding: 0.2em 0;
+    position: absolute;
+    bottom: 25px;
+    right: 15px;
+    left: 15px;
+}
+.custom-form{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -456,25 +470,34 @@ input:focus{
     border-radius: 20px;
     padding: 0.4em 0.75em;
 }
-.send-message form input{
+.custom-form input{
     background-color: transparent;
     border: none;
     width: 100%;
 }
-.send-message form button{
+.custom-form button{
     background-color: transparent;
 }
-.send-message form button svg{
+.custom-form button svg{
     width: 14px;
 }
 
 /* +++++++++++++ USER SECTION STYLES +++++++++ */
 .user-section{
-    transform: translateX(450px);
-    height: 95vh;
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    left: 0;
+    bottom: 15px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 0.65em 1.2em;
+    width: 100%;
+    height: 95%;
 }
 .user-section.open{
-    transform: translateX(0);
+    display: block;
 }
 .user-section .user-section__head{
     display: flex;
@@ -485,13 +508,15 @@ input:focus{
     width: 18px;
 }
 .user-section .user-section__head h4{
-    margin: 0.5em;
+    margin: 0 0.5em 0.5em;
     font-size: 1.5em;
     font-weight: 200;
 }
 
 .user-list{
     padding: 0.5em 0;
+    height: calc(100vh - 8.5em);
+    overflow-y: scroll;
 }
 .user-list .user-item{
     display: flex;
@@ -531,4 +556,14 @@ input:focus{
 }
 .user-list .user-item .button-icon svg{
     width: 4px;
+}
+
+/* ++++++++++++++++++++++++++++ RESPONSIVE PAGE ++++++++++++++++ */
+@media (max-width: 889px){
+    .main-page .left-section{
+        width: 95%;
+    }
+    .main-page .right-section{
+        display: none;
+    }
 }
