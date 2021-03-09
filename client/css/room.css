@@ -23,7 +23,6 @@ body{
     padding: 0;
     margin: 0;
     height: 100vh;
-    overflow: hidden;
     background-color: #F3F4F8;
     font-family: 'segoe ui';
 }
@@ -57,8 +56,10 @@ input:focus{
 .button-icon{
     background-color: transparent;
 }
-.button-left{
-    text-align: right;
+.space-between-buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 /* +++++++++++++ MAIN PAGE STYLES  ++++++++++ */
 .main-page{
@@ -134,8 +135,8 @@ input:focus{
 /*----------- MAIN WEBINAR STYLES ---------*/
 .main-webinar{
     display: flex;
-    height: 83vh;
-    margin: 1em; 
+    height: 80vh;
+    margin: 1em;
     position: relative;
 }
 .main-webinar .main-webcam__video{
@@ -154,6 +155,37 @@ input:focus{
     justify-content: flex-start;
     align-items: center;
     margin: 0.7em 1em;
+}
+
+.active-mic__block{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.active-mic__block .active-mic-on-item,
+.active-mic__block .active-mic-off-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2em 0.8em;
+    margin-left: 0.5em;
+    border-radius: 10em;
+}
+.active-mic__block .active-mic-on-item{
+    background-color: #C6E4DA;
+}
+.active-mic__block .active-mic-off-item{
+    background-color: #5A7B76;
+    color: white;
+}
+.active-mic__block .active-mic-on-item svg,
+.active-mic__block .active-mic-off-item svg{
+    width: 10px;
+}
+.active-mic__title{
+    margin: 0;
+    padding: 0 0.2em;
+    font-size: 0.7em;
 }
 .webinar-head .recording-webinar__block{
     background-color: white;
@@ -211,50 +243,24 @@ input:focus{
     transform: rotate(45deg);
 }
 
-.active-mic__block{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-.active-mic__block .active-mic-on-item,
-.active-mic__block .active-mic-off-item{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.2em 0.8em;
-    margin-left: 0.5em;
-    border-radius: 10em;
-}
-.active-mic__block .active-mic-on-item{
-    background-color: #C6E4DA;
-}
-.active-mic__block .active-mic-off-item{
-    background-color: #5A7B76;
-    color: white;
-}
-.active-mic__block .active-mic-on-item svg,
-.active-mic__block .active-mic-off-item svg{
-    width: 10px;
-}
-.active-mic__title{
-    margin: 0;
-    padding: 0 0.2em;
-    font-size: 0.7em;
-}
 
 .show-other-webcam {
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    position: absolute;
+    bottom: 100px;
+    flex-wrap: wrap-reverse;
+    padding: 0 0.5em;
 }
 .show-other-webcam .other-webcam-item{
     width: 180px;
+    height: 110px;
     display: flex;
     position: relative;
     cursor: pointer;
-    margin: 0.5em 1em;
+    margin: 0.4em;
 }
 .show-other-webcam .other-webcam-item video{
     object-fit: cover;
@@ -272,7 +278,7 @@ input:focus{
 
 .webinar-bottom .webinar-buttom-tools{
     position: absolute;
-    bottom: 0;
+    bottom: 15px;
     left: 0;
     right: 0;
     display: flex;
@@ -333,7 +339,7 @@ input:focus{
     margin: 0.6em 0;
 }
 
-/* ++++++++++++ RIGHT SIDE SECTION STILES ++++++9+++++++++++++++++++++ */
+/* ++++++++++++ RIGHT SIDE SECTION STILES +++++++++++++++++++++ */
 .main-page .right-section{
     width: calc(30% - 30px);
     padding: 15px 0;
@@ -414,14 +420,16 @@ input:focus{
 }
 .message-left .avatar img{
     object-fit: cover;
-    width: 100%;
-    height: 100%;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 .message-left .message{
     background-color: #F3F4F8;
     border-radius: 10px;
     width: auto;
+    max-width: 200px;
+    word-wrap: break-word;
     padding: 0.5em;
     margin: 0.2em 0.5em;
 }
@@ -444,6 +452,8 @@ input:focus{
 }
 .message-right .message{
     width: auto;
+    max-width: 80%;
+    word-wrap: break-word;
     background-color: #C6E4DA;
     padding: 0.5em;
     border-radius: 10px;
@@ -561,9 +571,72 @@ input:focus{
 /* ++++++++++++++++++++++++++++ RESPONSIVE PAGE ++++++++++++++++ */
 @media (max-width: 889px){
     .main-page .left-section{
-        width: 95%;
+        width: 100%;
     }
     .main-page .right-section{
         display: none;
+        position: absolute;
+        width: 45%;
+        right: 0;
+        bottom: 0;
+        top: 5px;
+    }
+}
+@media (max-width: 650px){
+    .main-page .right-section{
+        display: none;
+        width: 55%;
+    }
+    .header-webinar{
+        padding-bottom: 0.5em;
+    }
+    .header-webinar .webinar-title{
+        font-size: 1em;
+    }
+    .header-webinar .header-tollbar button{
+        font-size: 0.7em;
+    }
+    .main-webinar .webinar-head{
+        flex-wrap: wrap;
+    }
+    .show-other-webcam .other-webcam-item{
+        width: 170px;
+        margin: 0.2em;
+    }
+}
+@media (max-width: 540px) and (min-height: 630px){
+    .main-webinar{
+        height: 85vh;
+    }
+}
+@media (max-width: 540px){
+    .main-page .right-section{
+        display: none;
+        width: 70%;
+    }
+    .header-webinar .header-tollbar button{
+        font-size: 0.5em;
+    }
+    .show-other-webcam .other-webcam-item{
+        width: 160px;
+        margin: 0.1em;
+    }
+}
+
+@media (min-width: 890px){
+    .header-tollbar #btnOpenSidebar{
+        display: none;
+    }
+}
+
+/* ++++++++++++++ KEY FRAMES ANIMATIONS +++++++++++++ */
+@keyframes showSidebar {
+    from{
+        transform: translateX(200px);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0);
+        opacity: 1;
     }
 }
