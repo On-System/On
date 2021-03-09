@@ -15,6 +15,12 @@ let send_message_form = document.querySelector('.send-message');
 let btn_send_message = document.querySelector('.send-message button');
 let txt_send_message = document.querySelector('.send-message input');
 
+let main_webcam = document.querySelector('.main-webcam__video');
+let show_other_webcam = document.querySelector('.show-other-webcam');
+let all_webcams = document.querySelectorAll('video');
+
+let right_section = document.querySelector('.right-section');
+
 let users = [
     {
         token: 'USER1-TOKEN',
@@ -56,19 +62,15 @@ let users = [
 
 // ++++++++++++++++ WHEN WINDOW ARE LOADED :) ++++++++++++++++++
 // -------------- LOAD ALL USER TO USER SECTION ------------
+// -------------- AND LOAD ALL WEBCAMS IN PAGE ------------
 window.addEventListener('load', () => {
     loadUser(users);
+    setWebcamLayout();
+    document.getElementById('btnClosePoll').click();
 });
 
 // +++++ OPEN OR CLOSE OPTIONS +++++++
-button_open_option.forEach(menuButton => {
-    menuButton.addEventListener('click', () => {
-        if(!menuButton.nextElementSibling.classList.contains('open'))
-            menuButton.nextElementSibling.classList.add('open');
-        else
-            menuButton.nextElementSibling.classList.remove('open');
-    });
-});
+toggleOptions();
 
 // ++++++++++++ OPEN OR CLOSE USER SECTION (SIDEBAR) ++++++
 close_userSection.addEventListener('click', () => {
@@ -87,24 +89,53 @@ document.getElementById('btnClosePoll').addEventListener('click', () => {
 // +++++++++++++ SEND MESSAGE +++++++++++++
 btn_send_message.addEventListener('click', (e) => {
     e.preventDefault();
-    if(txt_send_message.value != '')
-        chat_section.insertAdjacentHTML('beforeend', `<div class="message-right"><div class="message"><p class="message-text">${txt_send_message.value}</p></div></div>`);
+    sendMessage(txt_send_message.value);
+    txt_send_message.value = '';
+});
+txt_send_message.addEventListener('keydown', (e) => {
+    if(e.keyCode == 13){
+        e.preventDefault();
+        btn_send_message.click();
+    }
 });
 
 // +++++++++++++++ SEARCH USERS ++++++++++++
 txt_search_user.addEventListener('input', () => {
-    users.forEach(userItem => {
-        let search = userItem.name.toUpperCase();
-        let inputValue = txt_search_user.value;
-        let userSerched = [];
-        if(search.indexOf(inputValue) == -1){
-            userSerched.push(userItem);
-        }
-        console.log(userSerched);
-    });
+    searchUser(users, txt_search_user.value);
 });
 
-///////////////// FUNCTIONS ///////////////
+// +++++++++++++++ CLOSE OR OPEN SIDEBAR +++++++++++
+document.getElementById('btnOpenSidebar').addEventListener('click', () => {
+    right_section.style.display = 'block';
+    right_section.style.animation = 'showSidebar 0.5s';
+});
+document.getElementById('btnCloseSidebar').addEventListener('click', () => {
+    right_section.style.display = 'none';
+});
+
+/////////////////////////////// FUNCTIONS ///////////////////////////////////
+function toggleOptions(){
+    button_open_option.forEach(menuButton => {
+        menuButton.addEventListener('click', () => {
+            if(!menuButton.nextElementSibling.classList.contains('open'))
+                menuButton.nextElementSibling.classList.add('open');
+            else
+                menuButton.nextElementSibling.classList.remove('open');
+        });
+    });
+}
+
+function scrollToDownChat(){
+    chat_section.scrollTo(0, chat_section.scrollHeight);
+}
+
+function sendMessage (inputMessage){
+    if(inputMessage != '' || inputMessage != undefined)
+        chat_section.insertAdjacentHTML('beforeend', `<div class="message-right"><div class="message"><p class="message-text">${inputMessage}</p></div></div>`);
+    inputMessage = ' ';
+    scrollToDownChat();
+}
+
 function loadUser (allUsers){
     allUsers.forEach(userItem => {
         if(userItem.token != ''){
@@ -116,4 +147,60 @@ function loadUser (allUsers){
             }
         }
     });
+}
+
+function searchUser (allUsers, serachInput){
+    user_list_section.querySelectorAll('.user-item').forEach(userListItems => {
+        userListItems.remove();
+    });
+    allUsers.forEach(userItem => {
+        let search = userItem.name.toLowerCase();
+        let inputValue = serachInput.toLowerCase();
+        if(search.indexOf(inputValue) > -1){
+            if(userItem.token != ''){
+                if(userItem.image_avatar === undefined){
+                    user_list_section.insertAdjacentHTML('beforeend', `<div class="user-item"><div class="profile"><div class="avatar" style="background-color: #FFDEDE;"><p class="first-letter">${userItem.name[0]}</p></div><h6 class="username">${userItem.name}</h6></div> <button class="button-icon"> <svg xmlns="http://www.w3.org/2000/svg" width="6" height="24" viewBox="0 0 6 24"> <path id="bx-dots-vertical-rounded" d="M18,15a3,3,0,1,0,3,3A3.009,3.009,0,0,0,18,15Zm0-9a3,3,0,1,0,3,3A3.009,3.009,0,0,0,18,6Zm0,18a3,3,0,1,0,3,3A3.009,3.009,0,0,0,18,24Z" transform="translate(-15 -6)" fill="#202020" /> </svg> </button></div>`)
+                }
+                else{
+                    user_list_section.insertAdjacentHTML('beforeend', `<div class="user-item"><div class="profile"><div class="avatar"> <img src="${userItem.image_avatar}" alt=""></div><h6 class="username">${userItem.name}</h6></div> <button class="button-icon"> <svg xmlns="http://www.w3.org/2000/svg" width="6" height="24" viewBox="0 0 6 24"> <path id="bx-dots-vertical-rounded" d="M18,15a3,3,0,1,0,3,3A3.009,3.009,0,0,0,18,15Zm0-9a3,3,0,1,0,3,3A3.009,3.009,0,0,0,18,6Zm0,18a3,3,0,1,0,3,3A3.009,3.009,0,0,0,18,24Z" transform="translate(-15 -6)" fill="#202020" /> </svg> </button></div>`)
+                }
+            }
+        }
+    });
+}
+
+function addFakeWebcam(image) {
+    if(image === undefined)
+        image = 'design/webcam1.jpg';
+
+    show_other_webcam.insertAdjacentHTML('beforeend', `<div class="other-webcam-item"> <video class="other-webcam__video" poster=${image}></video> <p class="webcam-name">Loren Spears</p></div>`)
+}
+
+function setWebcamLayout(){
+    // mobile size
+    if(all_webcams.length > 3 && window.innerWidth <= 540){
+        show_other_webcam.insertAdjacentHTML('beforeend', `<div class="other-webcam-item"> <video class="other-webcam__video" poster=${main_webcam.getAttribute('poster')}></video> <p class="webcam-name">Loren Spears</p></div>`);
+        main_webcam.remove();
+    }
+    else if(all_webcams.length <= 3 && window.innerWidth <= 540 && document.querySelector('.main-webcam__video') == null) {
+        document.querySelector('.main-webinar').insertAdjacentHTML('afterbegin', `<video class="main-webcam__video" poster=${main_webcam.getAttribute('poster')}></video>`);
+    }
+
+    //tablet or fablet size
+    if(all_webcams.length > 5 && (window.innerWidth > 540 && window.innerWidth <= 768)){
+        show_other_webcam.insertAdjacentHTML('beforeend', `<div class="other-webcam-item"> <video class="other-webcam__video" poster=${main_webcam.getAttribute('poster')}></video> <p class="webcam-name">Loren Spears</p></div>`);
+        main_webcam.remove();
+    }
+    else if(all_webcams.length <= 5 && (window.innerWidth > 540 && window.innerWidth <= 768) && document.querySelector('.main-webcam__video') == null) {
+        document.querySelector('.main-webinar').insertAdjacentHTML('afterbegin', `<video class="main-webcam__video" poster=${main_webcam.getAttribute('poster')}></video>`);
+    }
+
+    // laptop or desctop size
+    if(all_webcams.length > 8 && window.innerWidth > 768){
+        show_other_webcam.insertAdjacentHTML('beforeend', `<div class="other-webcam-item"> <video class="other-webcam__video" poster=${main_webcam.getAttribute('poster')}></video> <p class="webcam-name">Loren Spears</p></div>`);
+        main_webcam.remove();
+    }
+    else if(all_webcams.length <= 8 && window.innerWidth > 768 && document.querySelector('.main-webcam__video') == null) {
+        document.querySelector('.main-webinar').insertAdjacentHTML('afterbegin', `<video class="main-webcam__video" poster=${main_webcam.getAttribute('poster')}></video>`);
+    }
 }
